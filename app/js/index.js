@@ -171,7 +171,7 @@ function update_page_btn(json, wrap, href) {
 	//给列表添加查看详情事件
 	$(wrap + " .sck-group .col-xs-4 .content").on("click", function() {
 		var src = $(this).attr("data-src");
-		details_module('#sck-right .details', src, "my_material_library");
+		add_details_module('#sck-right .details', src, "my_material_library");
 	});
 	//给列表添加事件
 	add_sck_fun(wrap, "my_material_library");
@@ -186,20 +186,7 @@ function update_company_page(json, wrap, href) {
 	//给列表添加查看详情事件
 	$(wrap + " .sck-group .col-xs-4 .content").on("click", function() {
 		var src = $(this).attr("data-src");
-		/*$.ajax({
-			type: "get",
-			url: src,
-			async: true,
-			cache: false,
-			success: function(data) {
-				$('#sck-right .details').html(data).fadeIn();
-				//添加关闭事件
-				$('#sck-right .details .back').click(function() {
-					$('#sck-right .details').fadeOut();
-				});
-			}
-		});*/
-		details_company('#sck-right .details', src);
+		add_details_module('#sck-right .details', src);
 	});
 
 	//给列表增加 默认企业事件
@@ -467,7 +454,7 @@ function update_page_dyk(json, wrap, href) {
 	//给列表添加查看详情事件
 	$(wrap + " .dyk-group .col-xs-4 .content").on("click", function() {
 		var src = $(this).attr("data-src");
-		details_module('#dyk-right .details', src, "my_print_library");
+		add_details_module('#dyk-right .details', src, "my_print_library");
 	});
 
 	//添加打印库列表事件
@@ -585,6 +572,173 @@ function details_module(wrap, src, library) {
 			});
 		}
 	});
+}
+
+function add_details_module(wrap,src,library){
+	var text = `
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand pagetitle" href="#">
+						加载中...
+					</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<form class="navbar-form navbar-right" role="search">
+						<button type="button" class="btn btn-default back">
+									返回
+									</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+		<div class="xiangqing container-fluid">
+			<p class="text-center">正在加载中....</p>
+		</div>
+	`;
+	$(wrap).html(text).fadeIn();
+	//添加关闭事件
+	$(wrap).find('.back').click(function() {
+		$(wrap).fadeOut();
+	});
+	//给列表添加查看详情事件
+	$.ajax({
+		type: "get",
+		url: src,
+		async: true,
+		cache: false,
+		success: function(data_strings) {
+			let data = eval("("+ data_strings +")");
+			var html;
+			$(wrap).find(".pagetitle").text(data.pagetitle);
+			if(library){
+				html=`
+					<div class="row">
+						<div class="col-xs-7">
+							<img src="${data.image}" width="100%" id="neirong-pic" />
+						</div>
+						<div class="col-xs-5">
+							<div class="row">
+								<div class="col-xs-4">
+									品牌：
+								</div>
+								<div class="col-xs-8 pp">
+									&nbsp;${data.brand}
+								</div>
+								<div class="col-xs-4">
+									型号：
+								</div>
+								<div class="col-xs-8 xh">
+									&nbsp;${data.model}
+								</div>
+								<div class="col-xs-4">
+									材质：
+								</div>
+								<div class="col-xs-8 cz">
+									&nbsp;${data.material}
+								</div>
+								<div class="col-xs-4">
+									规格：
+								</div>
+								<div class="col-xs-8 gg">
+									&nbsp;${data.specifications}
+								</div>
+								<div class="col-xs-4">
+									上传时间：
+								</div>
+								<div class="col-xs-8 scsj">
+									&nbsp;${data.newstime}
+								</div>
+								<div class="chaozuo col-xs-9">
+									<div class="span25 ">
+										<a href="#" class="download" data-file="${data.file}" data-obj="{id:'${data.id}',file:'${data.file}',list_pic:'${data.titlepic}',name:'${data.title}'}">
+											<span class="glyphicon glyphicon-download"></span> 下载
+										</a>
+									</div>
+									<div class="span25">
+										<a href="#" class="look" data-file="${data.file}" data-obj="{id:'${data.id}',file:'${data.file}',list_pic:'${data.titlepic}',name:'${data.title}'}">
+											<span class="glyphicon glyphicon-eye-open"></span> 查看
+										</a>
+									</div>
+									<div class="span25">
+										<a href="#" class="collect" data-id="${data.id}" data-obj="{id:'${data.id}',file:'${data.file}',list_pic:'${data.titlepic}',name:'${data.title}'}">
+											<span class="glyphicon glyphicon-star"></span> 收藏
+										</a>
+									</div>
+									<div class="span25">
+										<a href="#" class="report" data-id="${data.id}" data-obj="{id:'${data.id}',file:'${data.file}',list_pic:'${data.titlepic}',name:'${data.title}'}">
+											<span class="glyphicon glyphicon-warning-sign"></span> 举报
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<p>
+								产品介绍：
+								<div class="cpjs">
+									&nbsp;${data.newstext}
+								</div>
+							</p>
+						</div>
+					</div>
+				`;
+			}else{
+				html=`
+					<div class="row">
+						<div class="col-xs-7">
+							<img src="${data.image}" width="100%" id="neirong-pic" />
+							<div class="fbtn">
+								<div class="span25">
+								<a href="#" class="download" data-file="${data.id}" data-obj="{id:'${data.id}',file:'${data.file}',list_pic:'${data.titlepic}',name:'${data.title}'}">
+										<span class="glyphicon glyphicon-registration-mark"></span> 默认
+									</a>
+								</div>
+								<div class="span25">
+									<a href="#" class="look" data-file="${data.id}" data-obj="{id:'${data.id}',file:'${data.file}',list_pic:'${data.titlepic}',name:'${data.title}'}">
+										<span class="glyphicon glyphicon-eye-open"></span> 查看
+									</a>
+								</div>
+								<div class="span25">
+									<a href="#" class="collect" data-id="${data.id}" data-obj="{id:'${data.id}',file:'${data.file}',list_pic:'${data.titlepic}',name:'${data.title}'}">
+										<span class="glyphicon glyphicon-star"></span> 收藏
+									</a>
+								</div>
+								<div class="span25">
+									<a href="#" class="report" data-id="${data.id}" data-obj="{id:'${data.id}',file:'${data.file}',list_pic:'${data.titlepic}',name:'${data.title}'}">
+										<span class="glyphicon glyphicon-heart"></span> 关注
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-5">
+							<div class="company">
+								<h2>企业名称：${data.pagetitle}</h2>
+								<button type="button" class="btn btn-lg btn-primary">设为首页</button>
+								<button type="button" class="btn btn-lg btn-primary">公司产品</button>
+								<button type="button" class="btn btn-lg btn-primary">收藏企业</button>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<p>
+								产品介绍：
+								<div class="cpjs">
+									&nbsp;${data.newstext}
+								</div>
+							</p>
+						</div>
+					</div>
+				`;
+			}
+			$(wrap).find(".xiangqing").html(html);
+			//添加打印库列表事件
+			if(library)add_sck_fun(wrap, library);
+		}
+	});	
 }
 
 //打印库左侧触发的事件
