@@ -145,6 +145,12 @@
 			},
 			/*为内容列表添加事件*/
 			add_con: function(wrap, library) {
+				//给列表添加查看详情事件
+				$(wrap).find(".sck-group .col-xs-4 .content").on("click", function() {
+					var src = $(this).attr("data-src");
+					add_details_module(wrap.parent().find(".details"), src, library);
+				});
+				//给列表添加事件
 				add_sck_fun(wrap, library);
 			},
 			/*为按钮添加事件*/
