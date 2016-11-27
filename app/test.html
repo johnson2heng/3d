@@ -1,0 +1,662 @@
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>神笔马良3D</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/index.css">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/layer.js"></script>
+		<link rel="stylesheet" href="chrome-extension://pehpgibhmholhaodcgejnhbamaaplkfi/app/js/skin/layer.css" id="layui_layer_skinlayercss">
+	</head>
+
+	<body>
+		<!--
+        	作者：344871874@qq.com
+        	时间：2016-07-26
+        	描述：头部导航栏
+        -->
+		<div class="bg-primary" id="top">
+			<div id="top-btn">
+				<div id="logo">
+					神笔马良3D
+				</div>
+				<div id="top-right-btn">
+					<div class="anniu" id="min"><span class="glyphicon glyphicon-minus"></span></div>
+					<div class="anniu" id="close"><span class="glyphicon glyphicon-remove"></span></div>
+				</div>
+			</div>
+			<div id="top-nav">
+				<ul>
+					<li>
+						<a href="#"><img src="img/logo.jpg"><span>公司首页</span></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/logo.jpg"><span>3D查看器</span></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/logo.jpg"><span>素材库</span></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/logo.jpg"><span>3D打印库</span></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/logo.jpg"><span>关于我们</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="iframe">
+			<section class="section active" id="shouye">
+				<div class="span-wrap" id="qiye">
+					<div class="pull-left left-bar" id="qiye-left">
+						<ul>
+							<li>
+								<a href="#" class="active">公司简介</a>
+							</li>
+							<li>
+								<a href="#">公司产品</a>
+							</li>
+							<li>
+								<a href="#">公司文化</a>
+							</li>
+							<li>
+								<a href="#">联系我们</a>
+							</li>
+							<li>
+								<a href="#">更多企业</a>
+							</li>
+							<li>
+								<a href="#">公司简介</a>
+							</li>
+							<li>
+								<a href="#">公司简介</a>
+							</li>
+							<li>
+								<a href="#">公司产品</a>
+							</li>
+							<li>
+								<a href="#">公司文化</a>
+							</li>
+							<li>
+								<a href="#">联系我们</a>
+							</li>
+							<li>
+								<a href="#">更多企业</a>
+							</li>
+							<li>
+								<a href="#">公司简介</a>
+							</li>
+							<li>
+								<a href="#">公司简介</a>
+							</li>
+							<li>
+								<a href="#">公司产品</a>
+							</li>
+							<li>
+								<a href="#">公司文化</a>
+							</li>
+							<li>
+								<a href="#">联系我们</a>
+							</li>
+							<li>
+								<a href="#">更多企业</a>
+							</li>
+							<li>
+								<a href="#">公司简介</a>
+							</li>
+						</ul>
+					</div>
+					<div class="pull-left" id="qiye-right">
+						<div class="section" style="display: block;">
+							<!--<iframe id="new_win" target="main" style="width: 100%; height: 100%; border-width: 0; overflow: hidden;" src="http://www.baidu.com/"></iframe>-->
+							<h1 class="text-center">zheli xianshi guangwang shouye</h1>
+						</div>
+					</div>
+				</div>
+
+			</section>
+			<section class="section" id="3d-wrap">
+				<div class="span-wrap" id="3d">
+					<div class="pull-left left-bar" id="3d-left">
+						<ul>
+							<li>
+								<a href="#" class="active">
+									全部素材
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									材质
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									企业
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									类别
+								</a>
+							</li>
+							<li>
+								<a href="#" class="active">
+									全部企业
+								</a>
+							</li>
+							<li>
+								<a href="#" class="active">
+									我的打印库
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									我的足迹
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									我的收藏
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									我关注的企业
+								</a>
+							</li>
+							<li>
+								<a href="#" class="active">
+									我要上传
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="pull-left" id="3d-mid" style="width: 580px; height: 100%;">
+						<iframe id="iframe3d" style="width: 100%; height: 100%; border-width: 0;" src="stl.html"></iframe>
+					</div>
+					<div class="pull-left right-bar" id="3d-right">
+						<ul>
+							<li>
+								<a href="#" class="" file="a98908173007a92f090143e02b406dcd.stl">
+									<img src="img/3d.jpg">
+									<span>气球布加迪35型</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="" file="miku2.stl">
+									<img src="img/3d.jpg">
+									<span>气球布加迪35型</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="" file="a98908173007a92f090143e02b406dcd.stl">
+									<img src="img/3d.jpg">
+									<span>气球布加迪35型</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="" file="miku2.stl">
+									<img src="img/3d.jpg">
+									<span>气球布加迪35型</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="" file="a98908173007a92f090143e02b406dcd.stl">
+									<img src="img/3d.jpg">
+									<span>气球布加迪35型</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="" file="miku2.stl">
+									<img src="img/3d.jpg">
+									<span>气球布加迪35型</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<script type="text/javascript">
+					$('#3d .right-bar ul li a').click(function() {
+						var file = $(this).attr('file');
+						$('#iframe3d').attr('src', "stl.html?" + file);
+						//alert(file);
+						//$('#iframe')[0].contentWindow.muxing(file);
+					});
+				</script>
+			</section>
+			<section class="section" id="sck">
+				<div class="span-wrap" id="sck">
+					<div class="pull-left left-bar" id="sck-left">
+						<ul>
+							<li>
+								<a href="#" class="active">公司简介</a>
+							</li>
+							<li>
+								<a href="#">公司产品</a>
+							</li>
+							<li>
+								<a href="#">公司文化</a>
+							</li>
+							<li>
+								<a href="#">联系我们</a>
+							</li>
+							<li>
+								<a href="#">更多企业</a>
+							</li>
+							<li>
+								<a href="#" class="active">公司简介</a>
+							</li>
+							<li>
+								<a href="#">公司简介</a>
+							</li>
+							<li>
+								<a href="#" class="active">公司产品</a>
+							</li>
+							<li>
+								<a href="#">公司文化</a>
+							</li>
+							<li>
+								<a href="#">联系我们</a>
+							</li>
+							<li>
+								<a href="#">更多企业</a>
+							</li>
+							<li>
+								<a href="#" class="active">公司简介</a>
+							</li>
+							<li>
+								<a href="#">公司简介</a>
+							</li>
+							<li>
+								<a href="#">公司产品</a>
+							</li>
+							<li>
+								<a href="#">公司文化</a>
+							</li>
+							<li>
+								<a href="#">联系我们</a>
+							</li>
+							<li>
+								<a href="#">更多企业</a>
+							</li>
+							<li>
+								<a href="#">公司简介</a>
+							</li>
+						</ul>
+					</div>
+					<div class="pull-left" id="sck-right">
+						<div class="section section1" style="display: block;">
+							<!--
+                     	作者：344871874@qq.com
+                     	时间：2016-08-01
+                     	描述：搜索栏
+                     -->
+							<nav class="navbar navbar-default">
+								<div class="container-fluid">
+									<!-- Brand and toggle get grouped for better mobile display -->
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							        <span class="sr-only">Toggle navigation</span>
+							        <span class="icon-bar"></span>
+							        <span class="icon-bar"></span>
+							        <span class="icon-bar"></span>
+						      	</button>
+										<a class="navbar-brand" href="#">全部素材共 <span style="color: green;">22374</span> 款</a>
+									</div>
+
+									<!-- Collect the nav links, forms, and other content for toggling -->
+									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+										<form class="navbar-form navbar-right" role="search">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="">
+											</div>
+											<button type="submit" class="btn btn-default">搜索</button>
+										</form>
+									</div>
+									<!-- /.navbar-collapse -->
+								</div>
+								<!-- /.container-fluid -->
+							</nav>
+							<!--
+                    	作者：344871874@qq.com
+                    	时间：2016-08-01
+                    	描述：分类栏
+                    -->
+							<div class="btn-wrap">
+								<button type="button" class="btn btn-success btn-xs">全部素材</button>
+								<button type="button" class="btn btn-default btn-xs">数码电子</button>
+								<button type="button" class="btn btn-default btn-xs">汽车</button>
+								<div class="btn-group pull-right">
+									<button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								默认排行 
+								<span class="caret"></span>
+  							</button>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#">默认排行</a>
+										</li>
+										<li role="separator" class="divider"></li>
+										<li>
+											<a href="#">下载量排行</a>
+										</li>
+										<li role="separator" class="divider"></li>
+										<li>
+											<a href="#">上升量排行</a>
+										</li>
+										<li role="separator" class="divider"></li>
+										<li>
+											<a href="#">最新发布</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!--
+                    	作者：344871874@qq.com
+                    	时间：2016-08-02
+                    	描述：模型组
+                    -->
+							<div class="container-fluid" id="sck-group">
+								<div class="row">
+									<div class="col-xs-4">
+										<a href="#" class=""><img src="img/3d.jpg"><span>气球布加迪35型</span></a>
+										<div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-download"></span> 下载</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-eye-open"></span> 查看</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-star"></span> 收藏</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-warning-sign"></span> 举报</a>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xs-4">
+										<a href="#" class=""><img src="img/logo.jpg"><span>气球布加迪35型</span></a>
+										<div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-download"></span> 下载</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-eye-open"></span> 查看</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-star"></span> 收藏</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-warning-sign"></span> 举报</a>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xs-4">
+										<a href="#" class=""><img src="img/3d.jpg"><span>气球布加迪35型</span></a>
+										<div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-download"></span> 下载</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-eye-open"></span> 查看</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-star"></span> 收藏</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-warning-sign"></span> 举报</a>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xs-4">
+										<a href="#" class=""><img src="img/logo.jpg"><span>气球布加迪35型</span></a>
+										<div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-download"></span> 下载</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-eye-open"></span> 查看</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-star"></span> 收藏</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-warning-sign"></span> 举报</a>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xs-4">
+										<a href="#" class=""><img src="img/3d.jpg"><span>气球布加迪35型</span></a>
+										<div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-download"></span> 下载</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-eye-open"></span> 查看</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-star"></span> 收藏</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-warning-sign"></span> 举报</a>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xs-4">
+										<a href="#" class=""><img src="img/3d.jpg"><span>气球布加迪35型</span></a>
+										<div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-download"></span> 下载</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-eye-open"></span> 查看</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-star"></span> 收藏</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-warning-sign"></span> 举报</a>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xs-4">
+										<a href="#" class=""><img src="img/3d.jpg"><span>气球布加迪35型</span></a>
+										<div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-download"></span> 下载</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-eye-open"></span> 查看</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-star"></span> 收藏</a>
+											</div>
+											<div class="span25">
+												<a href=""><span class="glyphicon glyphicon-warning-sign"></span> 举报</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="btn-group-wrap">
+									<div class="btn-group">
+										<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
+										<button type="button" class="btn btn-default">1</button>
+										<button type="button" class="btn btn-default">2</button>
+										<button type="button" class="btn btn-default">3</button>
+										<button type="button" class="btn btn-default">4</button>
+										<button type="button" class="btn btn-default">5</button>
+										<button type="button" class="btn btn-default">6</button>
+										<button type="button" class="btn btn-default">7</button>
+										<button type="button" class="btn btn-default">8</button>
+										<button type="button" class="btn btn-default">9</button>
+										<button type="button" class="btn btn-default">10</button>
+										<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="section section2">
+							<!--
+                     	作者：344871874@qq.com
+                     	时间：2016-08-01
+                     	描述：详情标题栏
+                     -->
+							<nav class="navbar navbar-default">
+								<div class="container-fluid">
+									<!-- Brand and toggle get grouped for better mobile display -->
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							        <span class="sr-only">Toggle navigation</span>
+							        <span class="icon-bar"></span>
+							        <span class="icon-bar"></span>
+							        <span class="icon-bar"></span>
+						      	</button>
+										<a class="navbar-brand" href="#">产品名称</a>
+									</div>
+
+									<!-- Collect the nav links, forms, and other content for toggling -->
+									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+										<form class="navbar-form navbar-right" role="search">
+											<button type="button" class="btn btn-default back">返回</button>
+										</form>
+									</div>
+									<!-- /.navbar-collapse -->
+								</div>
+								<!-- /.container-fluid -->
+							</nav>
+							<!--
+                    	作者：344871874@qq.com
+                    	时间：2016-08-04
+                    	描述：产品详情页面
+                    -->
+							<div class="xiangqing container-fluid">
+								<div class="row">
+									<div class="col-xs-7">
+										<img src="img/logo.jpg" width="100%">
+									</div>
+									<div class="col-xs-5">
+										<div class="row">
+											<div class="col-xs-4">品牌：</div>
+											<div class="col-xs-8">宝马</div>
+											<div class="col-xs-4">型号：</div>
+											<div class="col-xs-8">530</div>
+											<div class="col-xs-4">材质：</div>
+											<div class="col-xs-8">xxx</div>
+											<div class="col-xs-4">规格：</div>
+											<div class="col-xs-8">宝马</div>
+											<div class="col-xs-4">上传时间：</div>
+											<div class="col-xs-8">2015年五月</div>
+											<div class="chaozuo col-xs-9">
+												<div class="span25">
+													<a href=""><span class="glyphicon glyphicon-download"></span> 下载</a>
+												</div>
+												<div class="span25">
+													<a href=""><span class="glyphicon glyphicon-eye-open"></span> 查看</a>
+												</div>
+												<div class="span25">
+													<a href=""><span class="glyphicon glyphicon-star"></span> 收藏</a>
+												</div>
+												<div class="span25">
+													<a href=""><span class="glyphicon glyphicon-warning-sign"></span> 举报</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<p>产品介绍：</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<script>
+					//点击查看详情事件
+					$("#sck-right .section1 #sck-group .col-xs-4 > a").click(function() {
+						$("#sck-right .section").hide();
+						$("#sck-right .section2").fadeIn();
+					});
+					//详情页面返回事件
+					$('#sck-right .section2 .navbar .back').click(function() {
+						$("#sck-right .section").hide();
+						$("#sck-right .section1").fadeIn();
+					});
+
+					//查看3d模型事件
+					$('#sck .glyphicon').click(function() {
+						$('#iframe > .section').hide();
+						//window.frames('3d').contentWindow.document.location.reload(); 
+						$('#3d').get(0).contentWindow.load();
+						$("#iframe > .section").eq(1).fadeIn();
+					});
+				</script>
+			</section>
+			<section class="section" id="dyk">
+				<h1 class="text-center">这里是打印库页面</h1>
+
+			</section>
+			<section class="section" id="contact">
+				<h1 class="text-center">这里是联系我们页面</h1>
+			</section>
+		</div>
+
+		<script>
+			var load = layer.load(1, {
+				shade: [0.1, '#000'] //0.1透明度的白色背景
+			});
+			var gui = require('nw.gui');
+			var win = gui.Window.get();
+			//页面切换
+			$('#top-nav ul li').click(function() {
+				var _index = $(this).index();
+				$('#iframe > .section').hide();
+				$("#iframe > .section").eq(_index).fadeIn();
+			});
+
+			//页面切换方法
+			function qiehuan() {
+				$('#iframe > .section').hide();
+				//window.frames('3d').contentWindow.document.location.reload(); 
+				$('#3d').get(0).contentWindow.load();
+				$("#iframe > .section").eq(1).fadeIn();
+			}
+			//缩小按钮事件
+			$("#min").click(function() {
+				win.minimize();
+			});
+			//关闭软件事件
+			$("#close").click(function() {
+				var btnArray = ['是', '否'];
+				mui.confirm('请问您确定退出吗？', '提示：', btnArray, function(e) {
+					if(e.index == 0) {
+						win.close();
+					}
+				})
+			});
+			window.onload = function() {
+				//alert('页面加载完毕');
+				layer.close(load);
+			}
+		</script>
+
+	</body>
+
+</html>

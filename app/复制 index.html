@@ -1,0 +1,163 @@
+<html onselectstart="return false" onselect="no">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>神笔马良3D</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/layer.js"></script>
+	</head>
+
+	<body>
+		<div id="loading" style="position: fixed; top:30px; left: 0; right: 0; bottom: 0; background: #000; text-align: center; transition: opacity 1s ease;"><img src="img/bg-loading.gif" style=""/></div>
+		<script>
+			var fs = require('fs');
+			var http = require('http');
+			dirName = "dir";  
+            fs.mkdir(dirName, function(err) {  
+                //console.log("创建文件夹");  
+                fs.exists(dirName, function(exists) {  
+                    console.log(exists ? "创建成功" : "创建失败");  
+                });  
+            });
+		</script>
+		<!--
+        	作者：344871874@qq.com
+        	时间：2016-07-26
+        	描述：头部导航栏
+        -->
+		<div class="bg-primary" id="top">
+			<div id="top-btn">
+				<div id="logo">
+					神笔马良3D
+				</div>
+				<div id="top-right-btn">
+					<div class="anniu" id="min"><span class="glyphicon glyphicon-minus"></span></div>
+					<div class="anniu" id="close"><span class="glyphicon glyphicon-remove"></span></div>
+				</div>
+			</div>
+			<div id="top-nav">
+				<ul>
+					<li>
+						<a href="#"><img src="img/logo.jpg" /><span>公司首页</span></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/logo.jpg" /><span>3D查看器</span></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/logo.jpg" /><span>素材库</span></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/logo.jpg" /><span>3D打印库</span></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/logo.jpg" /><span>关于我们</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="iframe">
+			<section class="section active" id="shouye">
+				<script>
+					$.ajax({
+						type: "get",
+						url: "http://180.76.167.144/qiantai/shouye.php",
+						async: false,
+						success: function(data) {
+							$('#shouye').html(data);
+						}
+					});
+				</script>
+			</section>
+			<section class="section" id="3d-wrap">
+				<script>
+					$.ajax({
+						type: "get",
+						url: "http://180.76.167.144/qiantai/3d.php",
+						async: false,
+						success: function(data) {
+							$('#3d-wrap').html(data);
+						}
+					});
+				</script>
+			</section>
+			<section class="section" id="sck">
+				<script>
+					$.ajax({
+						type: "get",
+						url: "http://180.76.167.144/qiantai/sck.php",
+						async: false,
+						success: function(data) {
+							$('#sck').html(data);
+						}
+					});
+				</script>
+			</section>
+			<section class="section" id="dyk">
+				<script>
+					$.ajax({
+						type: "get",
+						url: "http://180.76.167.144/qiantai/dyk.php",
+						async: false,
+						success: function(data) {
+							$('#dyk').html(data);
+						}
+					});
+				</script>
+			</section>
+			<section class="section" id="contact">
+				<script>
+					$.ajax({
+						type: "get",
+						url: "http://180.76.167.144/qiantai/contact.php",
+						async: false,
+						success: function(data) {
+							$('#contact').html(data);
+						}
+					});
+				</script>
+			</section>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var gui = require('nw.gui');
+		var win = gui.Window.get();
+		//页面切换
+		$('#top-nav ul li').click(function() {
+			var _index = $(this).index();
+			$('#iframe > .section').hide();
+			$("#iframe > .section").eq(_index).fadeIn();
+		});
+
+		//缩小按钮事件
+		$("#min").click(function() {
+			win.minimize();
+		});
+		//关闭软件事件
+		$("#close").click(function() {
+			var btnArray = ['是', '否'];
+			mui.confirm('请问您确定退出吗？', '提示：', btnArray, function(e) {
+				if(e.index == 0) {
+					win.close();
+				}
+			})
+		});
+		window.onload = function() {
+			$('#loading').css('opacity',0);
+			setTimeout(function(){
+				 $('#loading').hide();
+			},1000);
+		}
+	</script>
+
+</html>

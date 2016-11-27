@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>企业首页</title>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+
+	<body>
+		<div class="span-wrap" id="3d">
+			<div class="pull-left left-bar" id="3d-left">
+				<ul>
+					<li><a href="#" class="active">全部素材</a></li>
+					<li><a href="#">材质</a></li>
+					<li><a href="#">企业</a></li>
+					<li><a href="#">类别</a></li>
+					<li><a href="#" class="active">全部企业</a></li>
+					<li><a href="#" class="active">我的打印库</a></li>
+					<li><a href="#">我的足迹</a></li>
+					<li><a href="#">我的收藏</a></li>
+					<li><a href="#">我关注的企业</a></li>
+					<li><a href="#" class="active">我要上传</a></li>
+				</ul>
+			</div>
+			<div class="pull-left" id="3d-mid" style="width: 580px; height: 100%;">
+				<iframe id="iframe" style="width: 100%; height: 100%; border-width: 0;" src="stl.html"></iframe>
+			</div>
+			<div class="pull-left right-bar" id="3d-right">
+				<ul>
+					<li><a href="#" class="" file="a98908173007a92f090143e02b406dcd.stl"><img src="img/3d.jpg"/><span>气球布加迪35型</span></a></li>
+					<li><a href="#" class="" file="miku2.stl" ><img src="img/3d.jpg"/><span>气球布加迪35型</span></a></li>
+					<li><a href="#" class="" file="a98908173007a92f090143e02b406dcd.stl"><img src="img/3d.jpg"/><span>气球布加迪35型</span></a></li>
+					<li><a href="#" class="" file="miku2.stl" ><img src="img/3d.jpg"/><span>气球布加迪35型</span></a></li>
+					<li><a href="#" class="" file="a98908173007a92f090143e02b406dcd.stl"><img src="img/3d.jpg"/><span>气球布加迪35型</span></a></li>
+					<li><a href="#" class="" file="miku2.stl" ><img src="img/3d.jpg"/><span>气球布加迪35型</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/mui.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/index.js"></script>
+	<script type="text/javascript">
+		$('.right-bar ul li a').click(function(){
+			var file = $(this).attr('file');
+			$('#iframe').attr('src',"stl.html?"+file);
+			//alert(file);
+			//$('#iframe')[0].contentWindow.muxing(file);
+		});
+		
+		function load(){
+			window.location.reload();
+		}
+	</script>
+</html>

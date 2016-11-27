@@ -1,0 +1,21 @@
+{
+    "name": "test_one",
+    "main": "index.html",
+    "nodejs":true,
+    "window": {
+        "title": "3d",
+        "toolbar": true,
+        "width": 980,
+        "height": 680,
+        "resizable":true,
+        "show_in_taskbar":true,
+        "frame":false,
+        "kiosk":false,
+        "icon": "2655716405282662783.png",
+        "resizable":false
+    },
+    "webkit":{
+        "plugin":true,
+        "page-cache":false
+    }
+}

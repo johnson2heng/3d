@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/three.min.js"></script>
+		<title>模型预览</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/render.css" />
+	</head>
+
+	<body>
+		<div id="model-container">
+			<div class="model-setting">
+				<div class="icon-btn" id="Js-setting"><i class="glyphicon glyphicon-cog"></i></div>
+				<ul class="model-setting-panel">
+					<li class="action">
+						<a class="shading" data-value="1">默认渲染</a>
+					</li>
+					<li class="action">
+						<a class="shading" data-value="2">线框渲染</a>
+					</li>
+
+					<li class="hr">
+						<div></div>
+					</li>
+					<li class="colors">
+						<a data-value="#004adb" style="background-color:#0066CC"></a>
+						<a data-value="#036755" style="background-color:#45BAAB"></a>
+						<a data-value="#077600" style="background-color:#009900"></a>
+						<a data-value="#52a500" style="background-color:#99CC33"></a>
+						<a data-value="#e38200" style="background-color:#E7AB00"></a>
+						<a data-value="#e35314" style="background-color:#FF9933"></a>
+						<a data-value="#600606" style="background-color:#cc1c0a"></a>
+						<a data-value="#330808" style="background-color:#993333"></a>
+						<a data-value="#310a40" style="background-color:#663366"></a>
+						<a data-value="#8e285e" style="background-color:#CC6699"></a>
+						<a data-value="#d0438e" style="background-color:#FF99CC"></a>
+						<a data-value="#703916" style="background-color:#996633"></a>
+						<a data-value="#ce9250" style="background-color:#FFCC99"></a>
+						<a data-value="#060606" style="background-color:#333333"></a>
+						<a data-value="#a1a1a1" style="background-color:#FFFFFF"></a>
+					</li>
+					<li class="hr">
+						<div></div>
+					</li>
+					<li class="action">旋转
+						<label><input type="radio" id="rrotate1" onclick="view.controls.autoRotate=true;" name="rrotate" value="0" checked="">开启</label>
+						<label><input type="radio" id="rrotate2" onclick="view.controls.autoRotate=false;" name="rrotate" value="1">关闭</label>
+					</li>
+				</ul>
+			</div>
+			<div class="model-rightbar">
+				<div class="icon-btn" id="close-screen"><i class="glyphicon glyphicon-fullscreen"></i></div>
+			</div>
+			<!--<div class="model-list">
+				<div class="icon-btn">1</div>
+			</div>-->
+			<style>
+				.model-list {
+					position: absolute;
+					left: 10px;
+					bottom: 10px;
+				}
+				
+				.model-list .icon-btn {
+					float: left;
+					margin-left: 5px;
+				}
+			</style>
+			<!--<div class="model-rightbar" style="right:60px">
+				<div class="icon-btn" id="full-screen1"><i class="glyphicon glyphicon-fullscreen"></i></div>
+			</div>-->
+			<div class="model-loading">
+				<div id="loading-css" style="transform:scale(0.5);">
+					<div></div>
+				</div>
+			</div>
+			<canvas id="model"></canvas>
+		</div>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/OrbitControls.js"></script>
+		<script type="text/javascript" src="js/STLLoader.js"></script>
+		<script type="text/javascript" src="js/DDSLoader.js"></script>
+		<script type="text/javascript" src="js/view.min.js?r=20160624"></script>
+		<script>
+			var gui = require("nw.gui");
+			var win = gui.Window.get();
+			//获取get的方法正则
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+
+			$(document).on('click', '#Js-setting', function() {
+				$('.model-setting-panel').toggleClass('active');
+			});
+			var color = "#004adb";
+			var params = {
+				"mat": "blue"
+			};
+			var mtl = "";
+			//切换模型
+			
+			if(GetQueryString('src')) {
+				var url = GetQueryString('src');
+				if(GetQueryString('src').indexOf("http") == -1){
+					var url = "../"+GetQueryString('src');
+				}
+			} else {
+				var url = "stl/a98908173007a92f090143e02b406dcd.stl";
+			}
+			//console.log(url,'url');
+			var path = "";
+			var view = new Dylrender();
+			if(view.Start(document.getElementById('model'))) {
+				if(/stl$/i.test(url)) {
+					view.loadModel('stl', url, color, params);
+				} else if(/obj$/i.test(url)) {
+					view.loadObjModel(url, mtl, path);
+				} else {
+					view.loadModel('json', url, color, params);
+				}
+			};
+
+
+			$(document).on('click', '.colors a', function() {
+				view.ChangeColor($(this).data('value'));
+			}).on('click', '.shading', function() {
+				view.SetShininess($(this).data('value'));
+			});
+
+			document.getElementById('close-screen').addEventListener('click', function() {
+				//window.close();
+				if(win.isFullscreen) {
+					window.close();
+				} else {
+					var stl = gui.Window.open(document.location.href, {
+						"title": "stl",
+						"frame": false,
+						"resizable": false,
+						"fullscreen": true
+					});
+				}
+			});
+
+			if(win.isFullscreen) {
+				$("#close-screen i").removeClass('glyphicon-fullscreen').addClass('glyphicon-off');
+			}
+		</script>
+	</body>
+
+</html>
