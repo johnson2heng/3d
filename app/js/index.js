@@ -94,7 +94,7 @@ $.ajax({
 
 		sckcb();
 
-		//***********************全部企业页面***************************加载初始数据放入
+		//***********************素材库全部企业***************************加载初始数据放入
 		$.ajax({
 			type: "get",
 			url: ip_url + "all_enterprise/",
@@ -103,6 +103,21 @@ $.ajax({
 			success: function(data) {
 				var html = data;
 				$("#sck-right .section2").html(data);
+			},
+			error: function(a, b, c) {
+				console.log(a, b, c);
+			}
+		});
+		
+		//***********************打印库全部企业***************************加载初始数据放入
+		$.ajax({
+			type: "get",
+			url: ip_url + "print_enterprise/",
+			async: true,
+			cache: false,
+			success: function(data) {
+				var html = data;
+				$("#dyk-right .section9").html(data);
 			},
 			error: function(a, b, c) {
 				console.log(a, b, c);
@@ -180,34 +195,10 @@ function update_page_btn(json, wrap, href) {
 
 //*************************************************************素材库企业更新的事件***********************************************************************
 
-function update_company_page(json, wrap, href) {
+function update_company_page(json, wrap, href,library) {
 	update_list_btn(json, wrap, href);
 
-	//给列表添加查看详情事件
-	$(wrap + " .sck-group .col-xs-4 .content").on("click", function() {
-		var src = $(this).attr("data-src");
-		add_details_module('#sck-right .details', src);
-	});
-
-	//给列表增加 默认企业事件
-	$(wrap + " .sck-group .col-xs-4 .span25 .download").on("click", function() {
-
-	});
-
-	//给列表增加查看事件
-	$(wrap + " .sck-group .col-xs-4 .span25 .look").on("click", function() {
-
-	});
-
-	//给列表增加收藏事件
-	$(wrap + " .sck-group .col-xs-4 .span25 .collect").on("click", function() {
-
-	});
-
-	//给列表增加 关注事件
-	$(wrap + " .sck-group .col-xs-4 .span25 .report").on("click", function() {
-
-	});
+	add_company_fun(json, wrap, href,library);
 }
 
 //**************************************************************更新列表按钮事件和添加总数****************************************************
@@ -345,6 +336,10 @@ function sckcb() {
 	//我关注的企业事件
 	$("#sck-left .my-enterprise").click(function() {
 		qihuan(".section6");
+		$("#sck-right .section6").Company_fen({
+			list_src: local_info.my_material_library.focus_enterprise,
+			library: "my_material_library"
+		});
 	});
 
 	//注册账号事件
@@ -559,6 +554,11 @@ function dykcb() {
 	$("#dyk-left .all-material").click(function() {
 		qihuan(".section1");
 	});
+	
+	//全部企业切换
+	$("#dyk-left .print_enterprise").click(function() {
+		qihuan(".section9");
+	});
 
 	//我的3d切换
 	$("#dyk-left .my-3d").click(function() {
@@ -588,6 +588,10 @@ function dykcb() {
 	//我关注的企业事件
 	$("#dyk-left .my-enterprise").click(function() {
 		qihuan(".section5");
+		$("#dyk-right .section5").Company_fen({
+			list_src: local_info.my_print_library.focus_enterprise,
+			library: "my_print_library"
+		});
 	});
 
 	//注册账号事件
@@ -749,6 +753,72 @@ function add_sck_fun(wrap, library) {
 	//给列表增加举报事件
 	$(wrap).find(" .span25 ").on(".report", "click", function() {
 
+	});
+}
+
+//企业给列表的选项添加事件
+function add_company_fun(json, wrap, href,library){
+	//给列表添加查看详情事件
+	$(wrap).find(" .sck-group .col-xs-4 .content").on("click", function() {
+		var src = $(this).attr("data-src");
+		var in_wrap = $(wrap).parent().find(".details");
+		add_details_module(in_wrap, src);
+	});
+
+	//给列表增加 默认企业事件
+	$(wrap).find(" .sck-group .col-xs-4 .span25 .download").on("click", function() {
+		
+	});
+
+	//给列表增加查看事件
+	$(wrap).find(" .sck-group .col-xs-4 .span25 .look").on("click", function() {
+		var obj = eval("("+ $(this).attr("data-obj") +")");
+		var src = obj.url;
+		var in_wrap = $(wrap).parent().find(".details");
+		add_details_module(in_wrap, src);
+	});
+
+	//给列表增加收藏事件
+	$(wrap).find(" .sck-group .col-xs-4 .span25 .collect").on("click", function() {
+
+	});
+	
+	//查看是否已关注
+	$(wrap).find(" .span25 .report").each(function() {
+		var obj = eval("(" + $(this).attr("data-obj") + ")");
+		var id = local_info[library].focus_enterprise.objindexOf(obj.id);
+		if(id != -1) {
+			$(this).addClass("disabled").html(`<span class="glyphicon glyphicon-heart"></span><span style="color:red"> 已关注</span>`);
+		}
+	});
+	
+	//给列表增加 关注事件
+	$(wrap).find(".sck-group .col-xs-4 .span25 .report").on("click", function() {
+		//获取所在的页面和当前li的对象
+		var obj = local_info[library].focus_enterprise;
+		var val = eval("(" + $(this).attr("data-obj") + ")");
+		if($(this).hasClass("disabled")) {
+			var me = this;
+			layer.confirm('您确定取消关注吗吗？', {
+				btn: ['确定', '取消'] //按钮
+			}, function() {
+				//改变状态
+				$(me).removeClass("disabled").html('<span class="glyphicon glyphicon-heart"></span> 关注');
+				//在列表内删除本地信息
+				obj.objremove(val.id);
+				save_local_info();
+				layer.msg('已取消关注');
+			}, function() {
+
+			});
+		} else {
+			//添加已收藏状态
+			$(this).addClass("disabled").html('<span class="glyphicon glyphicon-heart"></span><span style="color:red"> 已关注</span>');
+			//添加本地信息
+			obj.objremove(val.id);
+			obj.unshift(val);
+			save_local_info();
+		}
 	});
 }
 
